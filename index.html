@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Matrix Control Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>LED Matrix Control Panel</h1>
+        
+        <div class="status-bar">
+            <span id="connection-status" class="status disconnected">Disconnected</span>
+            <span id="mqtt-status" class="status disconnected">MQTT: Disconnected</span>
+        </div>
+
+        <div id="error-message" class="error-message" style="display: none;"></div>
+
+        <div class="status-panel">
+            <h2>Current Status</h2>
+            <div class="status-grid">
+                <div class="status-item">
+                    <label>Mode:</label>
+                    <span id="current-mode">IDLE</span>
+                </div>
+                <div class="status-item">
+                    <label>Count:</label>
+                    <span id="current-count">0</span>
+                </div>
+                <div class="status-item">
+                    <label>Timer:</label>
+                    <span id="timer-status">Inactive</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h2>Controls</h2>
+            <div class="button-grid">
+                <button class="control-btn" data-command="B" onclick="sendCommand('B')">Count Up</button>
+                <button class="control-btn" data-command="C" onclick="sendCommand('C')">Count Down</button>
+                <button class="control-btn" onclick="setCount()">Set Count</button>
+                <button class="control-btn" data-command="D" onclick="sendCommand('D')">Timer</button>
+                <button class="control-btn stop" onclick="stopOperation()">Stop</button>
+            </div>
+        </div>
+
+        <div class="device-status">
+            <h2>Device Status</h2>
+            <div class="status-grid">
+                <div class="status-item">
+                    <label>Device IP:</label>
+                    <span id="device-ip">-</span>
+                </div>
+                <div class="status-item">
+                    <label>Last Update:</label>
+                    <span id="last-update">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
